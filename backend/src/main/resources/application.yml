@@ -1,0 +1,37 @@
+server:
+  port: ${PORT:8081}
+
+spring:
+  application:
+    name: vehicle-rental
+  datasource:
+    url: ${DB_URL:jdbc:h2:file:./data/vehicle_rental}
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:}
+    driver-class-name: ${DB_DRIVER:org.h2.Driver}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: ${DB_DIALECT:org.hibernate.dialect.H2Dialect}
+  jackson:
+    date-format: yyyy-MM-dd
+    serialization:
+      write-dates-as-timestamps: false
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:7a2d3e8f9b1c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d}
+    expiration-ms: ${JWT_EXPIRATION:86400000}
+
+logging:
+  level:
+    com.rental: INFO
+    org.springframework.security: WARN

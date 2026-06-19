@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking - DriveRent</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="nav-brand">
+        <span class="brand-icon">🚗</span>
+        <span>DriveRent</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links"></div>
+    </div>
+  </nav>
+
+  <main class="booking-page">
+    <div class="container">
+      <h1 style="font-size:2rem;font-weight:800;margin-bottom:8px;" id="pageTitle">Bookings</h1>
+      <p style="color:var(--gray);margin-bottom:30px;" id="pageSubtitle">Choose a vehicle or manage your existing bookings.</p>
+
+      <div id="myBookings"></div>
+
+      <div id="bookingContent" style="display:none;">
+        <div class="booking-layout">
+          <div>
+            <form id="bookingForm">
+              <div id="alert" class="alert"></div>
+              <input type="hidden" id="vehicleId">
+              <div class="form-group">
+                <label for="startDate">Pick-up Date</label>
+                <input type="date" id="startDate" required
+                       min="">
+              </div>
+              <div class="form-group">
+                <label for="endDate">Drop-off Date</label>
+                <input type="date" id="endDate" required
+                       min="">
+              </div>
+              <button type="submit" class="form-submit">Confirm Booking</button>
+            </form>
+          </div>
+          <div class="booking-summary" id="bookingSummary">
+            <p style="color:var(--gray);">Select a vehicle to see booking summary</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>🚗 DriveRent</h3>
+          <p>Your trusted partner for vehicle rentals.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <a href="/">Home</a>
+          <a href="vehicles.html">Vehicles</a>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a href="#">📧 support@driverent.com</a>
+          <a href="#">📞 +91 98765 43210</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 DriveRent. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/booking.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const today = new Date().toISOString().split('T')[0];
+      const startDate = document.getElementById('startDate');
+      const endDate = document.getElementById('endDate');
+      if (startDate) startDate.setAttribute('min', today);
+      if (endDate) endDate.setAttribute('min', today);
+    });
+  </script>
+</body>
+</html>

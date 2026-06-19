@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DriveRent - Vehicle Rental Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="nav-brand">
+        <span class="brand-icon">🚗</span>
+        <span>DriveRent</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links"></div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Drive Your Dream<br><span>Rent with Ease</span></h1>
+          <p>Explore our premium fleet of vehicles for every occasion. From economy cars to luxury SUVs, find the perfect ride for your journey.</p>
+          <div class="hero-buttons">
+            <a href="/pages/vehicles.html" class="btn btn-primary">Browse Vehicles →</a>
+            <a href="/pages/register.html" class="btn btn-secondary">Get Started</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&h=400&fit=crop"
+               alt="Luxury car"
+               loading="eager">
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="container">
+        <div class="section-title">
+          <h2>Why Choose DriveRent?</h2>
+          <p>We make vehicle rental seamless, affordable, and hassle-free</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h3>Fully Insured</h3>
+            <p>Every vehicle comes with comprehensive insurance for your peace of mind.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Instant Booking</h3>
+            <p>Book your vehicle in minutes with our streamlined online system.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">💰</div>
+            <h3>Best Prices</h3>
+            <p>Competitive rates with no hidden charges. What you see is what you pay.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔧</div>
+            <h3>Well Maintained</h3>
+            <p>All vehicles are regularly serviced and inspected for your safety.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📞</div>
+            <h3>24/7 Support</h3>
+            <p>Round-the-clock customer service to assist you anytime, anywhere.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📍</div>
+            <h3>Multiple Locations</h3>
+            <p>Pick up and drop off at convenient locations across the city.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="popular-vehicles">
+      <div class="container">
+        <div class="section-title">
+          <h2>Popular Vehicles</h2>
+          <p>Check out our most-loved vehicles</p>
+        </div>
+        <div class="vehicles-grid" id="homeVehicles">
+          <div class="spinner"></div>
+        </div>
+        <div style="text-align:center;margin-top:35px;">
+          <a href="/pages/vehicles.html" class="btn btn-primary">View All Vehicles →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>🚗 DriveRent</h3>
+          <p>Your trusted partner for vehicle rentals. Quality cars, unbeatable prices, and exceptional service.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <a href="/">Home</a>
+          <a href="/pages/vehicles.html">Vehicles</a>
+          <a href="/pages/login.html">Login</a>
+          <a href="/pages/register.html">Register</a>
+        </div>
+        <div>
+          <h4>Vehicle Types</h4>
+          <a href="/pages/vehicles.html?type=SUV">SUVs</a>
+          <a href="/pages/vehicles.html?type=Sedan">Sedans</a>
+          <a href="/pages/vehicles.html?type=Hatchback">Hatchbacks</a>
+          <a href="/pages/vehicles.html?type=Luxury">Luxury</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a href="#">📧 support@driverent.com</a>
+          <a href="#">📞 +91 98765 43210</a>
+          <a href="#">📍 Pune, Maharashtra</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 DriveRent. All rights reserved. Made with ❤️ in India.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    async function loadHomeVehicles() {
+      try {
+        const response = await api.getVehicles();
+        const vehicles = (response.data || []).slice(0, 3);
+        const grid = document.getElementById('homeVehicles');
+
+        if (vehicles.length === 0) {
+          grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;"><p>No vehicles available yet.</p></div>';
+          return;
+        }
+
+        grid.innerHTML = vehicles.map(v => `
+          <div class="vehicle-card" onclick="window.location.href='${p('/pages/booking.html?vehicle=')}${v.id}'">
+            <div class="vehicle-card-image">
+              <img src="${v.imageUrl || 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=250&fit=crop'}"
+                   alt="${v.name}"
+                   loading="lazy"
+                   onerror="this.src='https://placehold.co/400x250/1a73e8/white?text=${v.name.replace(/ /g,'+')}'">
+              <span class="vehicle-card-badge">${v.type || 'Standard'}</span>
+            </div>
+            <div class="vehicle-card-body">
+              <h3>${v.name}</h3>
+              <div class="vehicle-meta">
+                <span>🚗 ${v.brand}</span>
+                <span>📅 ${v.year}</span>
+                <span>👥 ${v.seatingCapacity || 5} seats</span>
+              </div>
+              <div class="vehicle-card-footer">
+                <div class="vehicle-price">₹${Number(v.pricePerDay).toLocaleString()} <small>/ day</small></div>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-sm"
+                  onclick="event.stopPropagation(); window.location.href='${p('/pages/booking.html?vehicle=')}${v.id}'"
+                >
+                  Rent Now
+                </button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      } catch (e) {
+        document.getElementById('homeVehicles').innerHTML =
+          '<div class="empty-state" style="grid-column:1/-1;"><p>Unable to load vehicles. Please try again later.</p></div>';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadHomeVehicles);
+  </script>
+</body>
+</html>

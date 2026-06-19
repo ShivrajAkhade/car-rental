@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Users - DriveRent Admin</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/admin.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="nav-brand">
+        <span class="brand-icon">🚗</span>
+        <span>DriveRent</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links"></div>
+    </div>
+  </nav>
+
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="admin-user">
+        <h4 id="adminName">Admin</h4>
+        <p id="adminEmail">admin@gmail.com</p>
+      </div>
+      <a href="dashboard.html"><span class="sidebar-icon">📊</span> Dashboard</a>
+      <a href="manage-vehicles.html"><span class="sidebar-icon">🚗</span> Vehicles</a>
+      <a href="manage-bookings.html"><span class="sidebar-icon">📋</span> Bookings</a>
+      <a href="manage-users.html" class="active"><span class="sidebar-icon">👥</span> Users</a>
+    </aside>
+
+    <main class="admin-main">
+      <div class="data-table-wrapper">
+        <div class="data-table-toolbar">
+          <h3>All Users</h3>
+        </div>
+        <table class="data-table" id="usersTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Role</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+  </div>
+
+  <script src="../../js/api.js"></script>
+  <script src="../../js/auth.js"></script>
+  <script src="../../js/admin/manage-users.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = api.getUser();
+      if (user) {
+        document.getElementById('adminName').textContent = user.name;
+        document.getElementById('adminEmail').textContent = user.email;
+      }
+    });
+  </script>
+</body>
+</html>
