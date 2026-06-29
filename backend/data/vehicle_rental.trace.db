@@ -37,3 +37,5 @@ org.h2.jdbc.JdbcSQLDataException: Value too long for column "PHONE CHARACTER VAR
 insert into users (created_at,email,name,password,phone,role,id) values (?,?,?,?,?,?,default) [22001-224]
 2026-06-29 21:40:41.964225+05:30 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2026-06-29 22:17:03.719930+05:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
