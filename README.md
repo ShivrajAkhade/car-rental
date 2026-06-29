@@ -49,6 +49,16 @@ Then open `http://localhost:3000` in your browser.
 
 ---
 
+### Admin Credentials
+
+**Default Admin Account** (created automatically on first run):
+- **Email:** `admin@driverent.com`
+- **Password:** `admin@123`
+
+> ⚠️ For production deployments, change the default admin password immediately after first login.
+
+---
+
 ## Admin Credentials
 
 A default admin account is automatically seeded in the database. Use the following credentials to access the admin panel:

@@ -25,7 +25,8 @@ if (!BASE_PATH) {
 }
 
 function p(path) {
-  return BASE_PATH + path;
+  if (!BASE_PATH) return path.startsWith('/') ? path : '/' + path;
+  return BASE_PATH.replace(/\/+$/, '') + '/' + path.replace(/^\/+/, '');
 }
 
 function fixLinks() {
