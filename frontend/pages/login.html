@@ -54,6 +54,17 @@
   <script src="../js/api.js"></script>
   <script src="../js/auth.js"></script>
   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const redirect = params.get('redirect');
+      if (redirect) {
+        const regLink = document.querySelector('.auth-footer a');
+        if (regLink) {
+          regLink.href = `register.html?redirect=${encodeURIComponent(redirect)}`;
+        }
+      }
+    });
+
     document.getElementById('loginForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       hideAlert();

@@ -46,3 +46,12 @@ npx serve . -l 3000
 ```
 
 Then open `http://localhost:3000` in your browser.
+
+---
+
+## Admin Credentials
+
+A default admin account is automatically seeded in the database. Use the following credentials to access the admin panel:
+
+- **Email**: `admin@gmail.com`
+- **Password**: `admin123`

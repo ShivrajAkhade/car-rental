@@ -84,13 +84,29 @@ const api = {
 
     try {
       const response = await fetch(`${API_BASE}${endpoint}`, config);
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || `Request failed with status ${response.status}`);
+      
+      let data = null;
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        try {
+          data = await response.json();
+        } catch (e) {
+          // Ignore parse error and keep data as null
+        }
       }
 
-      return data;
+      if (!response.ok) {
+        if (response.status === 500) {
+          throw new Error((data && (data.message || data.error)) || 'An unexpected server error occurred. Please try again later.');
+        }
+        if (response.status === 400) {
+          throw new Error((data && (data.message || data.error)) || 'Invalid request. Please check your input.');
+        }
+        const errorMsg = (data && (data.message || data.error)) || `Request failed with status ${response.status}`;
+        throw new Error(errorMsg);
+      }
+
+      return data || { success: true };
     } catch (error) {
       if (error.name === 'TypeError' && error.message === 'Failed to fetch') {
         throw new Error('Unable to connect to server. Please check your internet connection.');

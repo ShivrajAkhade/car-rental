@@ -68,6 +68,17 @@
   <script src="../js/api.js"></script>
   <script src="../js/auth.js"></script>
   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const redirect = params.get('redirect');
+      if (redirect) {
+        const loginLink = document.querySelector('.auth-footer a');
+        if (loginLink) {
+          loginLink.href = `login.html?redirect=${encodeURIComponent(redirect)}`;
+        }
+      }
+    });
+
     document.getElementById('registerForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       hideAlert();
@@ -93,7 +104,9 @@
         if (response.success) {
           showAlert('Account created successfully! Redirecting to login...', 'success');
           setTimeout(() => {
-            window.location.href = 'login.html';
+            const params = new URLSearchParams(window.location.search);
+            const redirect = params.get('redirect');
+            window.location.href = redirect ? `login.html?redirect=${encodeURIComponent(redirect)}` : 'login.html';
           }, 1500);
         } else {
           showAlert(response.message || 'Registration failed');

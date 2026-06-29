@@ -138,6 +138,16 @@
   <script src="js/api.js"></script>
   <script src="js/auth.js"></script>
   <script>
+    function bookVehicle(id) {
+      if (!id) return;
+      if (!api.isAuthenticated()) {
+        const redirect = p(`/pages/booking.html?vehicle=${id}`);
+        window.location.href = p(`/pages/login.html?redirect=${encodeURIComponent(redirect)}`);
+      } else {
+        window.location.href = p(`/pages/booking.html?vehicle=${id}`);
+      }
+    }
+
     async function loadHomeVehicles() {
       try {
         const response = await api.getVehicles();
@@ -150,7 +160,7 @@
         }
 
         grid.innerHTML = vehicles.map(v => `
-          <div class="vehicle-card" onclick="window.location.href='${p('/pages/booking.html?vehicle=')}${v.id}'">
+          <div class="vehicle-card" onclick="bookVehicle(${v.id})">
             <div class="vehicle-card-image">
               <img src="${v.imageUrl || 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=250&fit=crop'}"
                    alt="${v.name}"
@@ -170,7 +180,7 @@
                 <button
                   type="button"
                   class="btn btn-primary btn-sm"
-                  onclick="event.stopPropagation(); window.location.href='${p('/pages/booking.html?vehicle=')}${v.id}'"
+                  onclick="event.stopPropagation(); bookVehicle(${v.id})"
                 >
                   Rent Now
                 </button>

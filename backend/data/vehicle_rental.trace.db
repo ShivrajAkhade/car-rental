@@ -18,3 +18,22 @@ org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-22
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
 2026-06-18 12:19:01.122421+05:30 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2026-06-23 14:01:07.912678+05:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2026-06-29 21:36:30.358459+05:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "PHONE CHARACTER VARYING(20)": "'shivrajakhade2007@gmail.com' (27)"; SQL statement:
+insert into users (created_at,email,name,password,phone,role,id) values (?,?,?,?,?,?,default) [22001-224]
+2026-06-29 21:38:35.649146+05:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "PHONE CHARACTER VARYING(20)": "'shivrajakhade2007@gmail.com' (27)"; SQL statement:
+insert into users (created_at,email,name,password,phone,role,id) values (?,?,?,?,?,?,default) [22001-224]
+2026-06-29 21:38:40.608758+05:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "PHONE CHARACTER VARYING(20)": "'shivrajakhade2007@gmail.com' (27)"; SQL statement:
+insert into users (created_at,email,name,password,phone,role,id) values (?,?,?,?,?,?,default) [22001-224]
+2026-06-29 21:38:44.168499+05:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "PHONE CHARACTER VARYING(20)": "'shivrajakhade2007@gmail.com' (27)"; SQL statement:
+insert into users (created_at,email,name,password,phone,role,id) values (?,?,?,?,?,?,default) [22001-224]
+2026-06-29 21:40:26.616176+05:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "PHONE CHARACTER VARYING(20)": "'shivrajakhade2007@gmail.com' (27)"; SQL statement:
+insert into users (created_at,email,name,password,phone,role,id) values (?,?,?,?,?,?,default) [22001-224]
+2026-06-29 21:40:41.964225+05:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]

@@ -24,6 +24,8 @@ async function loadVehicleDetails(vehicleId) {
         </div>
       `;
     }
+  } finally {
+    hideLoading();
   }
 }
 
@@ -216,12 +218,13 @@ async function cancelBooking(id) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  if (!requireAuth()) return;
+
   const params = new URLSearchParams(window.location.search);
   const vehicleId = params.get('vehicle');
   const showList = params.get('list');
 
   if (showList) {
-    requireAuth();
     document.getElementById('pageTitle').textContent = 'My Bookings';
     document.getElementById('pageSubtitle').textContent = 'View, manage, or cancel your bookings.';
     document.getElementById('bookingForm')?.remove();

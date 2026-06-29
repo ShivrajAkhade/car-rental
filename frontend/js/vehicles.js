@@ -52,7 +52,12 @@ function renderVehicles(vehicles) {
 
 function selectVehicle(id) {
   if (!id) return;
-  window.location.href = p(`/pages/booking.html?vehicle=${encodeURIComponent(String(id))}`);
+  if (!api.isAuthenticated()) {
+    const redirect = p(`/pages/booking.html?vehicle=${encodeURIComponent(String(id))}`);
+    window.location.href = p(`/pages/login.html?redirect=${encodeURIComponent(redirect)}`);
+  } else {
+    window.location.href = p(`/pages/booking.html?vehicle=${encodeURIComponent(String(id))}`);
+  }
 }
 
 async function loadVehicles(filters = {}) {
