@@ -34,6 +34,7 @@ function renderBookingSummary() {
 
   const summary = document.getElementById('bookingSummary');
   const content = document.getElementById('bookingContent');
+  if (!summary) return;
 
   summary.innerHTML = `
     <h3>Booking Summary</h3>
@@ -244,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (content) content.style.display = 'block';
 
   if (vehicleId) {
-    if (content) content.innerHTML = '<div class="spinner"></div>';
+    showLoading();
     loadVehicleDetails(vehicleId);
   } else {
     document.getElementById('pageTitle').textContent = 'Choose a Vehicle';
