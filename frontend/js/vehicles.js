@@ -52,11 +52,11 @@ function renderVehicles(vehicles) {
 
 function selectVehicle(id) {
   if (!id) return;
+  const vehicleUrl = p('/pages/booking.html') + '?vehicle=' + encodeURIComponent(String(id));
   if (!api.isAuthenticated()) {
-    const redirect = p(`/pages/booking.html?vehicle=${encodeURIComponent(String(id))}`);
-    window.location.href = p(`/pages/login.html?redirect=${encodeURIComponent(redirect)}`);
+    window.location.href = p('/pages/login.html') + '?redirect=' + encodeURIComponent(vehicleUrl);
   } else {
-    window.location.href = p(`/pages/booking.html?vehicle=${encodeURIComponent(String(id))}`);
+    window.location.href = vehicleUrl;
   }
 }
 

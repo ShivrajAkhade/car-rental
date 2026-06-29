@@ -12,7 +12,7 @@ function updateNavbar() {
   `;
 
   if (isAuth) {
-    html += `<a href="${p('/pages/booking.html?list=true')}">My Bookings</a>`;
+    html += `<a href="${p('/pages/booking.html')}?list=true">My Bookings</a>`;
     if (isAdmin) {
       html += `<a href="${p('/pages/admin/dashboard.html')}">Admin</a>`;
     }

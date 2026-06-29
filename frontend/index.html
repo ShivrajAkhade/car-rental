@@ -140,12 +140,7 @@
   <script>
     function bookVehicle(id) {
       if (!id) return;
-      if (!api.isAuthenticated()) {
-        const redirect = p(`/pages/booking.html?vehicle=${id}`);
-        window.location.href = p(`/pages/login.html?redirect=${encodeURIComponent(redirect)}`);
-      } else {
-        window.location.href = p(`/pages/booking.html?vehicle=${id}`);
-      }
+      window.location.href = p('/pages/booking.html') + '?vehicle=' + encodeURIComponent(String(id));
     }
 
     async function loadHomeVehicles() {

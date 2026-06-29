@@ -135,7 +135,7 @@ async function handleBookingSubmit(e) {
       e.target.reset();
       updatePrice();
       setTimeout(() => {
-        window.location.href = p('/pages/booking.html?list=true');
+        window.location.href = p('/pages/booking.html') + '?list=true';
       }, 2000);
     } else {
       showAlert(response.message || 'Booking failed');
