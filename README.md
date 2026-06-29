@@ -49,6 +49,12 @@ Then open `http://localhost:3000` in your browser.
 
 ---
 
+### Test Account
+
+You can also use the pre-seeded test account:
+- **Email:** `shivrajakhade2007@gmail.com`
+- **Password:** `shiv123`
+
 ### Admin Credentials
 
 **Default Admin Account** (created automatically on first run):

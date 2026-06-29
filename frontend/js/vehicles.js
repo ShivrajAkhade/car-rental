@@ -52,6 +52,7 @@ function renderVehicles(vehicles) {
 
 function selectVehicle(id) {
   if (!id) return;
+  sessionStorage.setItem('selectedVehicleId', String(id));
   const vehicleUrl = p('/pages/booking.html') + '?vehicle=' + encodeURIComponent(String(id));
   if (!api.isAuthenticated()) {
     window.location.href = p('/pages/login.html') + '?redirect=' + encodeURIComponent(vehicleUrl);

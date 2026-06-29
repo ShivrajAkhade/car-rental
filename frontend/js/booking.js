@@ -221,7 +221,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!requireAuth()) return;
 
   const params = new URLSearchParams(window.location.search);
-  const vehicleId = params.get('vehicle');
+  let vehicleId = params.get('vehicle');
+
+  if (!vehicleId) {
+    vehicleId = sessionStorage.getItem('selectedVehicleId');
+  }
+
   const showList = params.get('list');
 
   if (showList) {
@@ -232,6 +237,8 @@ document.addEventListener('DOMContentLoaded', () => {
     loadMyBookings();
     return;
   }
+
+  sessionStorage.removeItem('selectedVehicleId');
 
   const content = document.getElementById('bookingContent');
   if (content) content.style.display = 'block';

@@ -140,6 +140,7 @@
   <script>
     function bookVehicle(id) {
       if (!id) return;
+      sessionStorage.setItem('selectedVehicleId', String(id));
       window.location.href = p('/pages/booking.html') + '?vehicle=' + encodeURIComponent(String(id));
     }
 
